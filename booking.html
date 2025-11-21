@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Space Journey</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="booking-bg">
+
+<div class="form-box">
+    <h2>Space Travel Booking Form</h2>
+
+    <div class="planet-info">
+        <img id="planetImg" src="mars.jpg" alt="Planet Image">
+        <h3 id="planetName">Mars</h3>
+        <p id="planetDetails">Temperature: -65°C | Distance: 225 Million km</p>
+    </div>
+
+    <form action="submit.html" method="get">
+        <label>Your Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Select Planet</label>
+        <select id="planetSelect" name="planet" required>
+            <option>Mars</option>
+            <option>Moon</option>
+            <option>Jupiter</option>
+            <option>Saturn</option>
+        </select>
+
+        <label>Travel Date</label>
+        <input type="date" name="date" required>
+
+        <button class="btn" type="submit">Submit Booking</button>
+    </form>
+</div>
+
+<script>
+// Read planet from URL
+const params = new URLSearchParams(window.location.search);
+let planet = params.get('planet') || 'Mars';
+
+// Planet info
+const planetData = {
+    "Mars": {img:"mars.jpg", details:"Temperature: -65°C | Distance: 225 Million km"},
+    "Moon": {img:"moon.jpg", details:"Temperature: -20°C | Distance: 384,400 km"},
+    "Jupiter": {img:"jupiter.jpg", details:"Temperature: -145°C | Distance: 778 Million km"},
+    "Saturn": {img:"saturn.jpg", details:"Temperature: -178°C | Distance: 1.4 Billion km"}
+};
+
+// Set planet info dynamically
+document.getElementById('planetName').innerText = planet;
+document.getElementById('planetImg').src = planetData[planet].img;
+document.getElementById('planetDetails').innerText = planetData[planet].details;
+
+// Update info when dropdown changes
+const select = document.getElementById('planetSelect');
+select.value = planet;
+select.addEventListener('change', () => {
+    const selected = select.value;
+    document.getElementById('planetName').innerText = selected;
+    document.getElementById('planetImg').src = planetData[selected].img;
+    document.getElementById('planetDetails').innerText = planetData[selected].details;
+});
+</script>
+
+</body>
+</html>
