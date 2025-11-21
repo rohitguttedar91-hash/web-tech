@@ -1,0 +1,15 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $feedback = $_POST['feedback'];
+
+    $entry = "Name: $name\nEmail: $email\nFeedback: $feedback\n-----------------------\n";
+
+    file_put_contents("feedback.txt", $entry, FILE_APPEND);
+
+    echo "<h2>Thank you! Your feedback has been submitted.</h2>";
+    echo "<a href='index.php'>Go Back</a>";
+}
+?>
