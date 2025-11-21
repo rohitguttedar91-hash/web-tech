@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Confirmation - GalaxyVoyager</title>
+<style>
+    /* Global */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        height: 100vh;
+        background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    /* Confirmation Box */
+    .confirmation-box {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px #00fff7, 0 0 60px #00d6ff;
+        max-width: 500px;
+        width: 90%;
+    }
+
+    .confirmation-box h1 {
+        font-size: 3em;
+        color: #00fff7;
+        text-shadow: 0 0 20px #00fff7, 0 0 40px #00d6ff, 0 0 60px #00b3ff;
+        margin-bottom: 20px;
+    }
+
+    .confirmation-box p {
+        font-size: 1.3em;
+        color: #ffffff;
+        margin-bottom: 30px;
+        text-shadow: 0 0 10px #fff, 0 0 20px #00fff7;
+    }
+
+    .confirmation-box .btn {
+        display: inline-block;
+        background: linear-gradient(45deg, #00fff7, #7873f5);
+        color: #fff;
+        padding: 12px 30px;
+        font-size: 1em;
+        font-weight: 600;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 0 15px #00fff7, 0 0 30px #7873f5;
+        transition: 0.3s;
+    }
+
+    .confirmation-box .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 25px #00fff7, 0 0 50px #7873f5, 0 0 80px #00d6ff;
+    }
+</style>
+</head>
+<body>
+
+<div class="confirmation-box">
+    <h1>Booking Confirmed!</h1>
+    <p id="message">Thank you for booking your space journey.</p>
+    <a href="index.html" class="btn">Back to Home</a>
+</div>
+
+<script>
+    // Read form data from URL
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name') || 'Traveler';
+    const planet = params.get('planet') || 'Mars';
+    const date = params.get('date') || 'TBD';
+
+    document.getElementById('message').innerText =
+        `Thank you ${name}! Your trip to ${planet} on ${date} has been successfully booked.`;
+</script>
+
+</body>
+</html>
